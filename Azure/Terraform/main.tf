@@ -21,7 +21,7 @@ locals {
 }
 
 resource "azurerm_resource_group" "detectionlab" {
-  name = var.name
+  name = "${var.name}-terraform"
   location = var.region
 }
 
