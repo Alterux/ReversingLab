@@ -1,3 +1,7 @@
+variable "name" {
+  default = "ReversingLab"
+}
+
 variable "region" {
   default = "West US 2"
 }
