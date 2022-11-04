@@ -21,12 +21,12 @@ locals {
 }
 
 resource "azurerm_resource_group" "detectionlab" {
-  name = "DetectionLab-terraform"
-  location = var.region
+  name = var.name
+  location = var.regi`on
 }
 
 resource "azurerm_virtual_network" "detectionlab-network" {
-  name = "DetectionLab-vnet"
+  name = var.name+"-vnet"
   address_space = ["192.168.0.0/16"]
   location = var.region
   resource_group_name = azurerm_resource_group.detectionlab.name
@@ -34,14 +34,14 @@ resource "azurerm_virtual_network" "detectionlab-network" {
 
 # Create a subnet to launch our instances into
 resource "azurerm_subnet" "detectionlab-subnet" {
-  name                 = "DetectionLab-Subnet"
+  name                 = var.name+"-Subnet"
   resource_group_name  = azurerm_resource_group.detectionlab.name
   virtual_network_name = azurerm_virtual_network.detectionlab-network.name
   address_prefixes       = ["192.168.56.0/24"]
 }
 
 resource "azurerm_network_security_group" "detectionlab-nsg" {
-  name                = "DetectionLab-nsg"
+  name                = var.name+"-nsg"
   location = var.region
   resource_group_name  = azurerm_resource_group.detectionlab.name
 
