@@ -22,7 +22,7 @@ locals {
 
 resource "azurerm_resource_group" "detectionlab" {
   name = var.name
-  location = var.regi`on
+  location = var.region
 }
 
 resource "azurerm_virtual_network" "detectionlab-network" {
